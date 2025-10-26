@@ -1,0 +1,41 @@
+Semester,Subject_Code,Subject_Name,Credits
+1,MATH101,Engineering Mathematics I,4
+1,PHY101,Engineering Physics,4
+1,CHEM101,Engineering Chemistry,3
+1,ENG101,English Communication,3
+1,CS101,Introduction to Programming,4
+2,MATH102,Engineering Mathematics II,4
+2,PHY102,Applied Physics,3
+2,EE101,Basic Electrical Engineering,4
+2,ME101,Engineering Mechanics,4
+2,CS102,Data Structures,4
+3,MATH201,Discrete Mathematics,4
+3,CS201,Object Oriented Programming,4
+3,CS202,Computer Organization,4
+3,CS203,Database Management Systems,4
+3,CS204,Digital Electronics,3
+4,MATH202,Probability and Statistics,4
+4,CS205,Operating Systems,4
+4,CS206,Algorithm Design,4
+4,CS207,Computer Networks,4
+4,CS208,Theory of Computation,3
+4,MGT101,Engineering Economics,2
+5,CS301,Software Engineering,4
+5,CS302,Compiler Design,4
+5,CS303,Artificial Intelligence,4
+5,CS304,Web Technologies,3
+5,CS305,Elective I,3
+6,CS306,Machine Learning,4
+6,CS307,Computer Graphics,4
+6,CS308,Information Security,4
+6,CS309,Cloud Computing,3
+6,CS310,Elective II,3
+7,CS401,Big Data Analytics,4
+7,CS402,Deep Learning,4
+7,CS403,Mobile Application Development,3
+7,CS404,Blockchain Technology,3
+7,CS405,Elective III,3
+8,CS406,Project Work,8
+8,CS407,IoT and Applications,3
+8,CS408,Cyber Security,3
+8,MGT201,Entrepreneurship,2
