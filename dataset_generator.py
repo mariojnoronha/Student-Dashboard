@@ -6,72 +6,76 @@ import random
 np.random.seed(42)
 random.seed(42)
 
-# ================== COURSE STRUCTURE ==================
-# Define course structure for all 8 semesters
+print("="*70)
+print("           COLLEGE DATASET GENERATOR")
+print("="*70)
+print()
 
-course_structure = [
+# ================== SUBJECT-SEMESTER MAPPING ==================
+
+subjects_data = [
     # Semester 1
-    {'Semester': 1, 'Subject_Code': 'MATH101', 'Subject_Name': 'Engineering Mathematics I', 'Credits': 4},
-    {'Semester': 1, 'Subject_Code': 'PHY101', 'Subject_Name': 'Engineering Physics', 'Credits': 4},
-    {'Semester': 1, 'Subject_Code': 'CHEM101', 'Subject_Name': 'Engineering Chemistry', 'Credits': 3},
-    {'Semester': 1, 'Subject_Code': 'ENG101', 'Subject_Name': 'English Communication', 'Credits': 3},
-    {'Semester': 1, 'Subject_Code': 'CS101', 'Subject_Name': 'Introduction to Programming', 'Credits': 4},
+    {'Subject': 'MATH101', 'Semester': 1},
+    {'Subject': 'PHY101', 'Semester': 1},
+    {'Subject': 'CHEM101', 'Semester': 1},
+    {'Subject': 'ENG101', 'Semester': 1},
+    {'Subject': 'CS101', 'Semester': 1},
     
     # Semester 2
-    {'Semester': 2, 'Subject_Code': 'MATH102', 'Subject_Name': 'Engineering Mathematics II', 'Credits': 4},
-    {'Semester': 2, 'Subject_Code': 'PHY102', 'Subject_Name': 'Applied Physics', 'Credits': 3},
-    {'Semester': 2, 'Subject_Code': 'EE101', 'Subject_Name': 'Basic Electrical Engineering', 'Credits': 4},
-    {'Semester': 2, 'Subject_Code': 'ME101', 'Subject_Name': 'Engineering Mechanics', 'Credits': 4},
-    {'Semester': 2, 'Subject_Code': 'CS102', 'Subject_Name': 'Data Structures', 'Credits': 4},
+    {'Subject': 'MATH102', 'Semester': 2},
+    {'Subject': 'PHY102', 'Semester': 2},
+    {'Subject': 'EE101', 'Semester': 2},
+    {'Subject': 'ME101', 'Semester': 2},
+    {'Subject': 'CS102', 'Semester': 2},
     
     # Semester 3
-    {'Semester': 3, 'Subject_Code': 'MATH201', 'Subject_Name': 'Discrete Mathematics', 'Credits': 4},
-    {'Semester': 3, 'Subject_Code': 'CS201', 'Subject_Name': 'Object Oriented Programming', 'Credits': 4},
-    {'Semester': 3, 'Subject_Code': 'CS202', 'Subject_Name': 'Computer Organization', 'Credits': 4},
-    {'Semester': 3, 'Subject_Code': 'CS203', 'Subject_Name': 'Database Management Systems', 'Credits': 4},
-    {'Semester': 3, 'Subject_Code': 'CS204', 'Subject_Name': 'Digital Electronics', 'Credits': 3},
+    {'Subject': 'MATH201', 'Semester': 3},
+    {'Subject': 'CS201', 'Semester': 3},
+    {'Subject': 'CS202', 'Semester': 3},
+    {'Subject': 'CS203', 'Semester': 3},
+    {'Subject': 'CS204', 'Semester': 3},
     
     # Semester 4
-    {'Semester': 4, 'Subject_Code': 'MATH202', 'Subject_Name': 'Probability and Statistics', 'Credits': 4},
-    {'Semester': 4, 'Subject_Code': 'CS205', 'Subject_Name': 'Operating Systems', 'Credits': 4},
-    {'Semester': 4, 'Subject_Code': 'CS206', 'Subject_Name': 'Algorithm Design', 'Credits': 4},
-    {'Semester': 4, 'Subject_Code': 'CS207', 'Subject_Name': 'Computer Networks', 'Credits': 4},
-    {'Semester': 4, 'Subject_Code': 'CS208', 'Subject_Name': 'Theory of Computation', 'Credits': 3},
-    {'Semester': 4, 'Subject_Code': 'MGT101', 'Subject_Name': 'Engineering Economics', 'Credits': 2},
+    {'Subject': 'MATH202', 'Semester': 4},
+    {'Subject': 'CS205', 'Semester': 4},
+    {'Subject': 'CS206', 'Semester': 4},
+    {'Subject': 'CS207', 'Semester': 4},
+    {'Subject': 'CS208', 'Semester': 4},
+    {'Subject': 'MGT101', 'Semester': 4},
     
     # Semester 5
-    {'Semester': 5, 'Subject_Code': 'CS301', 'Subject_Name': 'Software Engineering', 'Credits': 4},
-    {'Semester': 5, 'Subject_Code': 'CS302', 'Subject_Name': 'Compiler Design', 'Credits': 4},
-    {'Semester': 5, 'Subject_Code': 'CS303', 'Subject_Name': 'Artificial Intelligence', 'Credits': 4},
-    {'Semester': 5, 'Subject_Code': 'CS304', 'Subject_Name': 'Web Technologies', 'Credits': 3},
-    {'Semester': 5, 'Subject_Code': 'CS305', 'Subject_Name': 'Elective I', 'Credits': 3},
+    {'Subject': 'CS301', 'Semester': 5},
+    {'Subject': 'CS302', 'Semester': 5},
+    {'Subject': 'CS303', 'Semester': 5},
+    {'Subject': 'CS304', 'Semester': 5},
+    {'Subject': 'CS305', 'Semester': 5},
     
     # Semester 6
-    {'Semester': 6, 'Subject_Code': 'CS306', 'Subject_Name': 'Machine Learning', 'Credits': 4},
-    {'Semester': 6, 'Subject_Code': 'CS307', 'Subject_Name': 'Computer Graphics', 'Credits': 4},
-    {'Semester': 6, 'Subject_Code': 'CS308', 'Subject_Name': 'Information Security', 'Credits': 4},
-    {'Semester': 6, 'Subject_Code': 'CS309', 'Subject_Name': 'Cloud Computing', 'Credits': 3},
-    {'Semester': 6, 'Subject_Code': 'CS310', 'Subject_Name': 'Elective II', 'Credits': 3},
+    {'Subject': 'CS306', 'Semester': 6},
+    {'Subject': 'CS307', 'Semester': 6},
+    {'Subject': 'CS308', 'Semester': 6},
+    {'Subject': 'CS309', 'Semester': 6},
+    {'Subject': 'CS310', 'Semester': 6},
     
     # Semester 7
-    {'Semester': 7, 'Subject_Code': 'CS401', 'Subject_Name': 'Big Data Analytics', 'Credits': 4},
-    {'Semester': 7, 'Subject_Code': 'CS402', 'Subject_Name': 'Deep Learning', 'Credits': 4},
-    {'Semester': 7, 'Subject_Code': 'CS403', 'Subject_Name': 'Mobile Application Development', 'Credits': 3},
-    {'Semester': 7, 'Subject_Code': 'CS404', 'Subject_Name': 'Blockchain Technology', 'Credits': 3},
-    {'Semester': 7, 'Subject_Code': 'CS405', 'Subject_Name': 'Elective III', 'Credits': 3},
+    {'Subject': 'CS401', 'Semester': 7},
+    {'Subject': 'CS402', 'Semester': 7},
+    {'Subject': 'CS403', 'Semester': 7},
+    {'Subject': 'CS404', 'Semester': 7},
+    {'Subject': 'CS405', 'Semester': 7},
     
     # Semester 8
-    {'Semester': 8, 'Subject_Code': 'CS406', 'Subject_Name': 'Project Work', 'Credits': 8},
-    {'Semester': 8, 'Subject_Code': 'CS407', 'Subject_Name': 'IoT and Applications', 'Credits': 3},
-    {'Semester': 8, 'Subject_Code': 'CS408', 'Subject_Name': 'Cyber Security', 'Credits': 3},
-    {'Semester': 8, 'Subject_Code': 'MGT201', 'Subject_Name': 'Entrepreneurship', 'Credits': 2},
+    {'Subject': 'CS406', 'Semester': 8},
+    {'Subject': 'CS407', 'Semester': 8},
+    {'Subject': 'CS408', 'Semester': 8},
+    {'Subject': 'MGT201', 'Semester': 8},
 ]
 
-# Save course structure
-course_df = pd.DataFrame(course_structure)
-course_df.to_csv('course_structure.csv', index=False)
-print("✓ Course structure created: course_structure.csv")
-print(f"  Total subjects: {len(course_df)}")
+# Save subject-semester mapping
+subjects_df = pd.DataFrame(subjects_data)
+subjects_df.to_csv('subjects_semester.csv', index=False)
+print("✓ Created: subjects_semester.csv")
+print(f"  Total subjects: {len(subjects_df)}")
 print()
 
 # ================== STUDENT DATA GENERATION ==================
@@ -81,97 +85,132 @@ first_names = ['Aarav', 'Vivaan', 'Aditya', 'Arjun', 'Sai', 'Arnav', 'Ayaan', 'K
                'Ananya', 'Diya', 'Aadhya', 'Saanvi', 'Pari', 'Avni', 'Sara', 'Myra', 'Anika', 'Riya',
                'Rohan', 'Karan', 'Rahul', 'Amit', 'Priya', 'Neha', 'Pooja', 'Sneha', 'Vikram', 'Rajesh',
                'Shreya', 'Ishita', 'Kavya', 'Nidhi', 'Tanvi', 'Aryan', 'Dev', 'Harsh', 'Kunal', 'Nikhil',
-               'Aditi', 'Divya', 'Gargi', 'Jiya', 'Kiara', 'Lakshmi', 'Meera', 'Naina', 'Ojas', 'Pranav']
+               'Aditi', 'Divya', 'Gargi', 'Jiya', 'Kiara', 'Lakshmi', 'Meera', 'Naina', 'Ojas', 'Pranav',
+               'Manish', 'Suresh', 'Deepak', 'Ramesh', 'Sandeep', 'Anjali', 'Shalini', 'Preeti', 'Sunita', 'Rekha']
 
 last_names = ['Sharma', 'Verma', 'Kumar', 'Singh', 'Patel', 'Reddy', 'Nair', 'Iyer', 'Joshi', 'Desai',
               'Gupta', 'Agarwal', 'Mehta', 'Shah', 'Kulkarni', 'Rao', 'Pillai', 'Menon', 'Das', 'Roy',
               'Banerjee', 'Mukherjee', 'Chatterjee', 'Jain', 'Sinha', 'Mishra', 'Tiwari', 'Pandey', 'Yadav', 'Chauhan']
 
-def generate_student_data(batch, num_students, semesters_to_generate):
-    """Generate student data for a specific batch"""
+def generate_batch_data(batch_name, num_students, max_semester):
+    """
+    Generate student data for a specific batch
+    
+    Args:
+        batch_name: e.g., '2021-25'
+        num_students: number of students in the batch
+        max_semester: highest semester completed (1-8)
+    """
+    # Get batch year for roll number
+    batch_year = batch_name.split('-')[0]
+    
+    # Generate unique student names
+    used_names = set()
     students = []
     
     for i in range(num_students):
-        name = f"{random.choice(first_names)} {random.choice(last_names)}"
+        # Generate unique name
+        while True:
+            name = f"{random.choice(first_names)} {random.choice(last_names)}"
+            if name not in used_names:
+                used_names.add(name)
+                break
         
-        # Generate roll number based on batch
-        batch_year = batch.split('-')[0]
         roll_no = f"{batch_year}{str(i+1).zfill(3)}"
         
-        # For each semester the student has completed
-        for sem in semesters_to_generate:
-            student_record = {
-                'Name': name,
-                'Roll_No': roll_no,
-                'Batch': batch,
-                'Semester': sem
-            }
-            
+        # Base performance for this student (consistent across semesters)
+        base_performance = np.random.normal(70, 12)
+        
+        student_data = {
+            'Name': name,
+            'Roll_No': roll_no
+        }
+        
+        # Add marks for all subjects up to max_semester
+        for sem in range(1, max_semester + 1):
             # Get subjects for this semester
-            sem_subjects = course_df[course_df['Semester'] == sem]['Subject_Code'].tolist()
-            
-            # Generate marks (with some variation for realism)
-            base_performance = np.random.normal(70, 15)  # Student's base ability
+            sem_subjects = subjects_df[subjects_df['Semester'] == sem]['Subject'].tolist()
             
             for subject in sem_subjects:
-                # Add some subject-specific variation
+                # Generate marks with some variation
                 mark = base_performance + np.random.normal(0, 10)
+                # Add semester-specific difficulty (later semesters slightly harder)
+                mark = mark - (sem * 0.5)
                 # Clamp between 0 and 100
                 mark = max(0, min(100, mark))
-                student_record[subject] = round(mark, 2)
-            
-            students.append(student_record)
+                student_data[subject] = round(mark, 2)
+        
+        students.append(student_data)
     
-    return students
+    return pd.DataFrame(students)
 
-# Generate data for multiple batches
-all_students = []
+# ================== GENERATE BATCH FILES ==================
 
-# Batch 2021-25 (Final year - all 8 semesters completed)
-print("Generating data for Batch 2021-25...")
-all_students.extend(generate_student_data('2021-25', 60, range(1, 9)))
+batches_info = [
+    {'name': '2021-25', 'students': 60, 'semesters': 8, 'year': 'Final Year'},
+    {'name': '2022-26', 'students': 65, 'semesters': 6, 'year': 'Third Year'},
+    {'name': '2023-27', 'students': 70, 'semesters': 4, 'year': 'Second Year'},
+    {'name': '2024-28', 'students': 75, 'semesters': 2, 'year': 'First Year'},
+]
 
-# Batch 2022-26 (Third year - 6 semesters completed)
-print("Generating data for Batch 2022-26...")
-all_students.extend(generate_student_data('2022-26', 65, range(1, 7)))
+print("Generating batch data files...")
+print("-" * 70)
 
-# Batch 2023-27 (Second year - 4 semesters completed)
-print("Generating data for Batch 2023-27...")
-all_students.extend(generate_student_data('2023-27', 70, range(1, 5)))
+for batch in batches_info:
+    batch_name = batch['name']
+    num_students = batch['students']
+    max_semester = batch['semesters']
+    year = batch['year']
+    
+    print(f"\nGenerating: Batch {batch_name} ({year})")
+    print(f"  Students: {num_students}")
+    print(f"  Semesters completed: {max_semester}")
+    
+    # Generate data
+    batch_df = generate_batch_data(batch_name, num_students, max_semester)
+    
+    # Save to CSV
+    filename = f"batch_{batch_name.replace('-', '_')}.csv"
+    batch_df.to_csv(filename, index=False)
+    
+    print(f"  ✓ Created: {filename}")
+    print(f"    Columns: {len(batch_df.columns)} (Name, Roll_No + {len(batch_df.columns)-2} subjects)")
 
-# Batch 2024-28 (First year - 2 semesters completed)
-print("Generating data for Batch 2024-28...")
-all_students.extend(generate_student_data('2024-28', 75, range(1, 3)))
-
-# Create DataFrame and save
-students_df = pd.DataFrame(all_students)
-students_df.to_csv('college_students.csv', index=False)
-
-print(f"\n✓ Student data created: college_students.csv")
-print(f"  Total records: {len(students_df)}")
-print(f"  Unique students: {students_df['Roll_No'].nunique()}")
-print(f"  Batches: {', '.join(students_df['Batch'].unique())}")
 print()
+print("="*70)
+print("DATASET GENERATION COMPLETE!")
+print("="*70)
 
 # Display summary
-print("="*60)
-print("DATASET SUMMARY")
-print("="*60)
-print("\nBatch-wise Distribution:")
-for batch in sorted(students_df['Batch'].unique()):
-    batch_data = students_df[students_df['Batch'] == batch]
-    unique_students = batch_data['Roll_No'].nunique()
-    semesters = sorted(batch_data['Semester'].unique())
-    print(f"  {batch}: {unique_students} students, Semesters: {semesters}")
+print("\nFiles Created:")
+print("-" * 70)
+print("1. subjects_semester.csv")
+print("   - Maps subjects to their respective semesters")
+print(f"   - Total subjects: {len(subjects_df)}")
+print()
 
-print("\nSemester-wise Subject Count:")
+for i, batch in enumerate(batches_info, 2):
+    filename = f"batch_{batch['name'].replace('-', '_')}.csv"
+    print(f"{i}. {filename}")
+    print(f"   - Batch: {batch['name']} ({batch['year']})")
+    print(f"   - Students: {batch['students']}")
+    print(f"   - Semesters: {batch['semesters']}")
+    
+    # Count subjects
+    total_subjects = sum(len(subjects_df[subjects_df['Semester'] == sem]) 
+                        for sem in range(1, batch['semesters'] + 1))
+    print(f"   - Subject columns: {total_subjects}")
+    print()
+
+print("="*70)
+print("\nSemester-wise Subject Breakdown:")
+print("-" * 70)
 for sem in range(1, 9):
-    subjects = course_df[course_df['Semester'] == sem]
-    print(f"  Semester {sem}: {len(subjects)} subjects")
+    subjects = subjects_df[subjects_df['Semester'] == sem]['Subject'].tolist()
+    print(f"Semester {sem}: {len(subjects)} subjects")
+    print(f"  {', '.join(subjects)}")
+    print()
 
-print("\n" + "="*60)
-print("Files created successfully!")
-print("  1. course_structure.csv - Course and subject information")
-print("  2. college_students.csv - Student marks data")
-print("\nYou can now run the dashboard system!")
-print("="*60)
+print("="*70)
+print("✓ All files generated successfully!")
+print("="*70)
