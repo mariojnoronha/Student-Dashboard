@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-import os
-from glob import glob
 
 class CollegeDashboard:
     def __init__(self):
@@ -15,16 +12,11 @@ class CollegeDashboard:
     def load_data(self):
         """Load subject-semester mapping and all batch files"""
         # Load subject-semester mapping
-        if os.path.exists(self.subjects_semester_file):
-            self.subjects_semester = pd.read_csv(self.subjects_semester_file)
-            print(f"✓ Loaded subject-semester mapping ({len(self.subjects_semester)} subjects)")
-        else:
-            print("⚠ subjects_semester.csv not found!")
-            return
+        self.subjects_semester = pd.read_csv(self.subjects_semester_file)
+        print(f"✓ Loaded subject-semester mapping ({len(self.subjects_semester)} subjects)")
         
         # Load all batch CSV files
-        batch_pattern = "batch_*.csv"
-        batch_files_list = glob(batch_pattern)
+        batch_files_list = ['batch_2021_25.csv', 'batch_2022_26.csv', 'batch_2023_27.csv', 'batch_2024_28.csv']
         
         if not batch_files_list:
             print("⚠ No batch files found!")
@@ -98,8 +90,8 @@ class CollegeDashboard:
             return
         
         print("\nAvailable Batches:")
-        for i, batch in enumerate(batches, 1):
-            print(f"{i}. {batch}")
+        for i in range(len(batches)):
+            print(f"{i+1}. {batches[i]}")
         
         try:
             choice = int(input(f"\nSelect batch (1-{len(batches)}): "))
