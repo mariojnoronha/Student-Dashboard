@@ -13,20 +13,20 @@ class CollegeDashboard:
         """Load subject-semester mapping and all batch files"""
         # Load subject-semester mapping
         self.subjects_semester = pd.read_csv(self.subjects_semester_file)
-        print(f"✓ Loaded subject-semester mapping ({len(self.subjects_semester)} subjects)")
+        print(f"Loaded subject-semester mapping ({len(self.subjects_semester)} subjects)")
         
         # Load all batch CSV files
         batch_files_list = ['batch_2021_25.csv', 'batch_2022_26.csv', 'batch_2023_27.csv', 'batch_2024_28.csv']
         
         if not batch_files_list:
-            print("⚠ No batch files found!")
+            print("No batch files found!")
             return
         
         for file in batch_files_list:
             # Extract batch name from filename (e.g., batch_2021_25.csv -> 2021-25)
             batch_name = file.replace('batch_', '').replace('.csv', '').replace('_', '-')
             self.batch_files[batch_name] = pd.read_csv(file)
-            print(f"✓ Loaded {batch_name}: {len(self.batch_files[batch_name])} students")
+            print(f"Loaded {batch_name}: {len(self.batch_files[batch_name])} students")
         
         print()
     
@@ -73,7 +73,7 @@ class CollegeDashboard:
         available_sems = self.get_available_semesters_for_batch(batch)
         
         if semester not in available_sems:
-            print(f"\n❌ Batch {batch} does not have information for Semester {semester}!")
+            print(f"\nBatch {batch} does not have information for Semester {semester}!")
             print(f"   Available semesters for this batch: {available_sems}")
             print(f"   This batch has only completed up to Semester {max(available_sems) if available_sems else 0}")
             return False
@@ -86,7 +86,7 @@ class CollegeDashboard:
         
         batches = self.get_available_batches()
         if not batches:
-            print("⚠ No batches available!")
+            print("No batches available!")
             return
         
         print("\nAvailable Batches:")
@@ -96,11 +96,11 @@ class CollegeDashboard:
         try:
             choice = int(input(f"\nSelect batch (1-{len(batches)}): "))
             if choice < 1 or choice > len(batches):
-                print("❌ Invalid choice!")
+                print("Invalid choice!")
                 return
             batch = batches[choice - 1]
         except ValueError:
-            print("❌ Invalid input!")
+            print("Invalid input!")
             return
         
         name = input("Enter student name: ").strip()
@@ -109,7 +109,7 @@ class CollegeDashboard:
         # Check if roll number exists
         batch_df = self.batch_files[batch]
         if roll_no in batch_df['Roll_No'].values:
-            print(f"❌ Roll number {roll_no} already exists!")
+            print(f"Roll number {roll_no} already exists!")
             return
         
         # Determine max semester from existing data
@@ -151,12 +151,12 @@ class CollegeDashboard:
         filename = f"batch_{batch.replace('-', '_')}.csv"
         self.batch_files[batch].to_csv(filename, index=False)
         
-        print(f"\n✓ Student {name} added to batch {batch}!")
+        print(f"\nStudent {name} added to batch {batch}!")
     
     def view_batch_students(self, batch=None, semester_filter=None):
         """View students from a specific batch"""
         if not batch:
-            print("\n⚠ Please select a batch!")
+            print("\nPlease select a batch!")
             return
         
         # Validate semester for batch
@@ -165,7 +165,7 @@ class CollegeDashboard:
         
         df = self.get_batch_data(batch)
         if df.empty:
-            print(f"\n⚠ No data found for batch {batch}!")
+            print(f"\nNo data found for batch {batch}!")
             return
         
         # Get subject columns
@@ -215,7 +215,7 @@ class CollegeDashboard:
     def calculate_statistics(self, batch=None, semester_filter=None):
         """Calculate comprehensive statistics"""
         if not batch:
-            print("\n⚠ Please select a batch!")
+            print("\nPlease select a batch!")
             return
         
         # Validate semester for batch
@@ -224,7 +224,7 @@ class CollegeDashboard:
         
         df = self.get_batch_data(batch)
         if df.empty:
-            print(f"\n⚠ No data found for batch {batch}!")
+            print(f"\nNo data found for batch {batch}!")
             return
         
         # Get subject columns
@@ -238,7 +238,7 @@ class CollegeDashboard:
             subject_cols = all_subject_cols
         
         if not subject_cols:
-            print("\n⚠ No subjects found!")
+            print("\nNo subjects found!")
             return
         
         print("\n" + "="*90)
@@ -321,7 +321,7 @@ class CollegeDashboard:
     def visualize_data(self, batch=None, semester_filter=None):
         """Create visualizations"""
         if not batch:
-            print("\n⚠ Please select a batch!")
+            print("\nPlease select a batch!")
             return
         
         # Validate semester for batch
@@ -330,7 +330,7 @@ class CollegeDashboard:
         
         df = self.get_batch_data(batch)
         if df.empty:
-            print(f"\n⚠ No data found for batch {batch}!")
+            print(f"\nNo data found for batch {batch}!")
             return
         
         # Get subject columns
@@ -344,7 +344,7 @@ class CollegeDashboard:
             subject_cols = all_subject_cols
         
         if not subject_cols:
-            print("\n⚠ No subjects to visualize!")
+            print("\nNo subjects to visualize!")
             return
         
         # Calculate metrics
@@ -483,12 +483,12 @@ class CollegeDashboard:
         
         plt.tight_layout()
         plt.show()
-        print("\n✓ Visualization displayed!")
+        print("\nVisualization displayed!")
     
     def search_student(self):
         """Search for a student across all batches"""
         if not self.batch_files:
-            print("\n⚠ No batch data available!")
+            print("\nNo batch data available!")
             return
         
         search_term = input("\nEnter student name or roll number: ").strip().lower()
@@ -515,18 +515,18 @@ class CollegeDashboard:
                 print(display_df.to_string(index=False))
         
         if not found:
-            print(f"\n⚠ No student found matching '{search_term}'")
+            print(f"\nNo student found matching '{search_term}'")
         print()
     
     def semester_wise_comparison(self, batch):
         """Compare performance across semesters for a batch"""
         if not batch:
-            print("\n⚠ Please select a batch!")
+            print("\nPlease select a batch!")
             return
         
         df = self.get_batch_data(batch)
         if df.empty:
-            print(f"\n⚠ No data found for batch {batch}!")
+            print(f"\nNo data found for batch {batch}!")
             return
         
         subject_cols = [col for col in df.columns if col not in ['Name', 'Roll_No']]
@@ -544,7 +544,7 @@ class CollegeDashboard:
                 }
         
         if not semester_data:
-            print("\n⚠ No semester data available!")
+            print("\nNo semester data available!")
             return
         
         print("\n" + "="*70)
@@ -588,13 +588,13 @@ class CollegeDashboard:
         
         plt.tight_layout()
         plt.show()
-        print("✓ Visualization displayed!")
+        print("Visualization displayed!")
     
     def batch_selection_menu(self):
         """Menu for selecting batch"""
         batches = self.get_available_batches()
         if not batches:
-            print("\n⚠ No batches available!")
+            print("\nNo batches available!")
             return None
         
         print("\nAvailable Batches:")
@@ -609,7 +609,7 @@ class CollegeDashboard:
         except ValueError:
             pass
         
-        print("❌ Invalid choice!")
+        print("Invalid choice!")
         return None
     
     def semester_selection_menu(self, batch=None):
@@ -623,9 +623,10 @@ class CollegeDashboard:
         
         print("\nSemester Filter:")
         for i in range(1, 9):
-            status = "✓" if i in available_sems else "✗" if batch else " "
+            status = f"\u2713" if i in available_sems else "X" if batch else " "
             print(f"{i}. Semester {i} {status}")
         print("9. All Semesters")
+        
         
         try:
             choice = int(input("\nSelect semester (1-9): "))
@@ -633,11 +634,12 @@ class CollegeDashboard:
                 return choice
             elif choice == 9:
                 return None
+            else:
+                print("Invalid choice! Please select between 1-9.")
+                return False
         except ValueError:
-            pass
-        
-        print("❌ Invalid choice!")
-        return None
+            print("Invalid input! Please enter a number.")
+            return False 
     
     def display_menu(self):
         """Display main menu"""
@@ -659,11 +661,11 @@ class CollegeDashboard:
     
     def run(self):
         """Main program loop"""
-        print("\n🎓 Welcome to College Student Dashboard System!")
+        print("\nWelcome to College Student Dashboard System!")
         print()
         
         if not self.batch_files:
-            print("⚠ No batch data found! Please run the dataset generator first.")
+            print("No batch data found! Please run the dataset generator first.")
             return
         
         while True:
@@ -682,7 +684,8 @@ class CollegeDashboard:
                 batch = self.batch_selection_menu()
                 if batch:
                     semester = self.semester_selection_menu()
-                    self.view_batch_students(batch, semester)
+                    if semester is not False:
+                        self.view_batch_students(batch, semester)
                     
             elif choice == '4':
                 batch = self.batch_selection_menu()
@@ -693,7 +696,8 @@ class CollegeDashboard:
                 batch = self.batch_selection_menu()
                 if batch:
                     semester = self.semester_selection_menu()
-                    self.calculate_statistics(batch, semester)
+                    if semester is not False: 
+                        self.calculate_statistics(batch, semester)
                     
             elif choice == '6':
                 batch = self.batch_selection_menu()
@@ -704,7 +708,8 @@ class CollegeDashboard:
                 batch = self.batch_selection_menu()
                 if batch:
                     semester = self.semester_selection_menu()
-                    self.visualize_data(batch, semester)
+                    if semester is not False:
+                        self.visualize_data(batch, semester)
                     
             elif choice == '8':
                 batch = self.batch_selection_menu()
@@ -732,11 +737,11 @@ class CollegeDashboard:
                 
             elif choice == '11':
                 print("\nThank you for using College Student Dashboard System!")
-                print("Goodbye! 👋\n")
+                print("Goodbye! \n")
                 break
                 
             else:
-                print("\n❌ Invalid choice! Please enter a number between 1 and 11.")
+                print("\nInvalid choice! Please enter a number between 1 and 11.")
             
             input("\nPress Enter to continue...")
 
