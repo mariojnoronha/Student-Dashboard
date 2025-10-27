@@ -13,7 +13,6 @@ class CollegeDashboard:
         """Load subject-semester mapping and all batch files"""
         # Load subject-semester mapping
         self.subjects_semester = pd.read_csv(self.subjects_semester_file)
-        print(f"Loaded subject-semester mapping ({len(self.subjects_semester)} subjects)")
         
         # Load all batch CSV files
         batch_files_list = ['batch_2021_25.csv', 'batch_2022_26.csv', 'batch_2023_27.csv', 'batch_2024_28.csv']
@@ -26,7 +25,6 @@ class CollegeDashboard:
             # Extract batch name from filename (e.g., batch_2021_25.csv -> 2021-25)
             batch_name = file.replace('batch_', '').replace('.csv', '').replace('_', '-')
             self.batch_files[batch_name] = pd.read_csv(file)
-            print(f"Loaded {batch_name}: {len(self.batch_files[batch_name])} students")
         
         print()
     
@@ -311,7 +309,7 @@ class CollegeDashboard:
         
         if len(failed_students) > 0:
             print(f"\nStudents with Backlogs (Marks < 40):")
-            for idx, row in failed_students.iterrows():
+            for i, row in failed_students.iterrows():
                 failed_subs = [col for col in subject_cols if row[col] < 40]
                 backlog_details = ', '.join([f"{s} ({row[s]:.1f})" for s in failed_subs])
                 print(f"  • {row['Name']} ({row['Roll_No']}): {backlog_details}")
